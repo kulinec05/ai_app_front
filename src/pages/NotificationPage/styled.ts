@@ -11,7 +11,9 @@ export const IconContainer = styled.div`
   display: flex;
   margin-left: auto;
   padding-right: 10px;
-
+  @media (min-width: 440px) {
+    display: none;
+  }
   svg {
     cursor: pointer;
   }
@@ -19,7 +21,10 @@ export const IconContainer = styled.div`
 
 export const ContentContainer = styled.div`
   gap: 24px;
-  max-width: calc(375px - 32px);
+  @media (max-width: 440px) {
+    width: 100%;
+  }
+  max-width: 440px;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -35,6 +40,11 @@ export const ImagesBlock = styled.div`
   background-color: #efefef;
   display: flex;
   padding: 40px 8px;
+  width: 440px;
+
+  @media (max-width: 440px) {
+    width: 100%;
+  }
   border-radius: 8px;
   flex-direction: column;
   gap: 32px;
@@ -57,6 +67,11 @@ export const TextContainer = styled.div`
   flex-direction: column;
   background-color: #efefef;
   gap: 16px;
+  width: 440px;
+
+  @media (max-width: 440px) {
+    width: 100%;
+  }
   padding: 40px 24px;
 `;
 

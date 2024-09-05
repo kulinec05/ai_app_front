@@ -8,19 +8,15 @@ export const MainPageWrapper = styled.div`
   position: relative;
 `;
 
-export const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  min-height: 100vh;
-  display: flex;
-  position: relative;
-`;
+export const Container = styled.div``;
 
 export const MainPageContentWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   z-index: 10;
+  height: calc(100vh - 80px);
+  position: relative;
   align-items: center;
 `;
 

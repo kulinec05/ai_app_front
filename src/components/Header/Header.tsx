@@ -4,9 +4,11 @@ import { HeaderContainer, HeaderTitle, Links, LinksContainer } from './styled';
 const Header = ({ vwDesk }: { vwDesk: boolean }) => {
   return (
     <HeaderContainer mobile={!vwDesk}>
-      <HeaderTitle>ГВРН</HeaderTitle>
+      <Links to="/">
+        <HeaderTitle>ГВРН</HeaderTitle>
+      </Links>
       <LinksContainer>
-        <Links to="">О сервисе</Links>
+        <Links to="/about">О сервисе</Links>
         <Links to="/how-to">Рекомендации к фото</Links>
       </LinksContainer>
     </HeaderContainer>

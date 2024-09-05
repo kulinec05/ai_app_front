@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const ResultPageWrapper = styled.div`
   width: 100%;
   height: 100%;
-  min-height: 100vh;
   justify-content: center;
   display: flex;
 `;
@@ -11,27 +10,32 @@ export const ResultPageWrapper = styled.div`
 export const ResultPageContainer = styled.div<{ desk: boolean }>`
   width: 80%;
   height: 100%;
-  min-height: 100vh;
   padding: 100px 0 20px 80px;
+  @media (max-width: 440px) {
+    width: 100%;
+    padding: 20px;
+  }
   display: flex;
   flex-direction: ${({ desk }) => (desk ? 'row' : 'column-reverse')};
 `;
 
 export const GoBackBlock = styled.div`
-  margin-top: -10px;
-  background-color: #efefef;
-  border-radius: 50%;
   width: 20px;
-  margin-right: 30px;
   height: 20px;
   padding: 20px;
   cursor: pointer;
+  position: sticky;
+  top: 100px;
+  left: 0;
+  transform: translateX(-100px);
 `;
 
 export const ResultContainer = styled.div`
   width: 90%;
   display: flex;
-  margin-right: 75px;
+  @media (max-width: 440px) {
+    width: 100%;
+  }
   flex-direction: column;
   gap: 42px;
 `;
@@ -39,11 +43,12 @@ export const ResultContainer = styled.div`
 export const ResultsRightBlock = styled.div``;
 
 export const ResultsDataContainer = styled.div`
+  height: fit-content;
   display: flex;
   flex-direction: column;
   gap: 4px;
   padding: 4px;
-  border-radius: 10px;
+  border-radius: 14px;
   background-color: #f2f2f4;
 `;
 
@@ -51,6 +56,9 @@ export const ResultDataBlock = styled.div`
   border-radius: 10px;
   background-color: #fff;
   width: 240px;
+  @media (max-width: 440px) {
+    width: 100%;
+  }
   padding: 16px 20px;
   display: flex;
   flex-direction: column;
@@ -110,6 +118,7 @@ export const DataBlock = styled.div`
 `;
 
 export const DownloadButton = styled.button`
+  width: fit-content;
   padding: 16px 32px;
   background-color: black;
   font-family: Arial, Helvetica, sans-serif;
@@ -149,6 +158,9 @@ export const ColumnBlock = styled.div`
 export const DataContainer = styled.div`
   display: flex;
   gap: 42px;
+  @media (max-width: 440px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const TextResult = styled.div`
@@ -156,7 +168,7 @@ export const TextResult = styled.div`
   font-size: 16px;
 
   line-height: 160%;
-  width: 80%;
+  width: 100%;
 
   .error {
     color: orange;
@@ -167,8 +179,9 @@ export const TextResult = styled.div`
   }
 `;
 
-export const ImageBox = styled.div`
-  max-width: 60%;
+export const StyledImage = styled.img`
+  width: 100%;
+  max-width:  1000px;
 `;
 
 export const Hoverelement = styled.div`
@@ -194,6 +207,5 @@ export const Hoverelement = styled.div`
     transform: rotate(45deg);
     border-right: 2px solid #a4a4a4;
     border-bottom: 2px solid #a4a4a4;
-    position: absolute;
   }
 `;

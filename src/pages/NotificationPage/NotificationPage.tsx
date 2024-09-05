@@ -16,17 +16,21 @@ import {
   Title,
   ImageContainer,
 } from './styled';
-import { useNavigate } from 'react-router';
+import { useNavigate, useOutletContext } from 'react-router';
 
 export const NotificationPage = () => {
+  const vwDesk = useOutletContext<boolean>();
+
   const navigate = useNavigate();
 
   return (
     <NotificationPageWrapper>
       <ContentContainer>
-        <IconContainer>
-          <CloseIcon onClick={() => navigate('/')} />
-        </IconContainer>
+        {
+          <IconContainer>
+            <CloseIcon onClick={() => navigate('/')} />
+          </IconContainer>
+        }
         <ImagesBlock>
           <Title>Как должно выглядеть фото</Title>
           <ImagesContainer>

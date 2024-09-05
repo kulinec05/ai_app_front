@@ -8,7 +8,18 @@ export default defineConfig({
   plugins: [react(), viteTsconfigPaths(), svgrPlugin(), qrcode()],
   server: {
     port: 3000,
-    host: '127.0.0.1',
+    proxy: {
+      '/stream': {
+        target: 'http://80.90.189.82',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/upload': {
+        target: 'http://80.90.189.82',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
   build: {
     outDir: './build',

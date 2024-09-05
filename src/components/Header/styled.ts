@@ -1,17 +1,20 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const HeaderContainer = styled.div<{ mobile: boolean }>`
   display: flex;
-  flex-direction: ${({ mobile }) => (mobile ? 'column' : 'row')};
+  flex-direction: row;
   border-bottom: ${({ mobile }) => (mobile ? '1px solid #DDDDDD' : 'none')};
-  position: absolute;
-  top: 20px;
+  position: sticky;
+  top: 0;
+  height: auto;
   z-index: 11;
-  left: 50%;
-  width: ${({ mobile }) => (mobile ? '100%' : '90%')};
-  padding: ${({ mobile }) => (mobile ? '0 0 16px 16px' : '0')};
-  transform: translateX(-50%);
+  @media (max-width: 440px) {
+    flex-direction:column
+  }
+  background-color: white;
+  width: 100%;
+  padding: 20px;
   justify-content: space-between;
 `;
 

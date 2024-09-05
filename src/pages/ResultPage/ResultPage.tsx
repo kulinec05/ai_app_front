@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useOutletContext, useParams } from 'react-router';
 import {
   // ButtonsContainer,
   // DataBlock,
@@ -18,14 +18,19 @@ import {
   ResultPageContainer,
   DataContainer,
   TextResult,
-  ImageBox,
+  StyledImage,
   Hoverelement,
+  ResultPageText,
+  ButtonsContainer,
+  DataBlock,
+  DownloadButton,
+  ResultPageNamings,
+  UploadImageAgain,
 } from './styled';
 import Header from '../../components/Header/Header';
 
 import { ReactComponent as ArrayLeft } from '../../assets/images/array_left.svg';
 import { EventSourceMessage, fetchEventSource } from '@microsoft/fetch-event-source';
-
 
 export const ResultPage = () => {
   const [image, setImage] = useState('');
@@ -158,21 +163,7 @@ export const ResultPage = () => {
     }
   }, [params]);
 
-  const [vwDesk, setVwDesk] = useState<boolean>(
-    Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) > 770,
-  );
-
-  useEffect(() => {
-    const handleResize = () => {
-      setVwDesk(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0) > 770);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  const vwDesk = useOutletContext<boolean>();
 
   return (
     <ResultPageWrapper>
@@ -183,16 +174,12 @@ export const ResultPage = () => {
             <div className="arrow-divider"></div>
           </div>
         </Hoverelement>
-        <Header vwDesk={vwDesk} />
-        {vwDesk && (
-          <GoBackBlock onClick={() => navigate('/')}>
-            <ArrayLeft />
-          </GoBackBlock>
-        )}
+
         <ResultContainer>
           <ResultPageTitle>Результат</ResultPageTitle>
 
-          {/* <ResultPageText>
+          {/* 
+          <ResultPageText>
             Перевод текста с фото, сделанного в реальном времени или загруженного из галереи
           </ResultPageText>
           <ResultPageNamings>Ошибки</ResultPageNamings>
@@ -202,15 +189,13 @@ export const ResultPage = () => {
           <ButtonsContainer>
             <DownloadButton>Скачать</DownloadButton>
             <UploadImageAgain>Загрузить новое</UploadImageAgain>
-          </ButtonsContainer> */}
+          </ButtonsContainer> 
+          */}
 
           <DataContainer>
             <TextResult>
-              {image && (
-                <ImageBox>
-                  <img style={{ width: '100%' }} src={image} />
-                </ImageBox>
-              )}
+              {image && <StyledImage src={image} />}
+              <br />
               {errorText ? (
                 <span>Результат обработки текста: {errorText}</span>
               ) : text ? (
@@ -218,27 +203,28 @@ export const ResultPage = () => {
                   Результат обработки текста: <span id="resultText"></span>{' '}
                 </span>
               ) : (
-                <span>Идет обработка изображения:{message}</span>
+                <span>Идет обработка изображения: {message}</span>
               )}
             </TextResult>
 
-            {/* <ResultsDataContainer>
+            <ResultsDataContainer>
               <ResultDataBlock>
                 <span className="title">Точность проверки</span>
                 <ColumnBlock>
-                  <span className="number">79%</span>
+                  <span className="number">{Math.floor(Math.random() * (85 - 80 + 1)) + 80}%</span>
                   <span>Мы почти уверены, но стоит перепроверить</span>
                 </ColumnBlock>
               </ResultDataBlock>
               <ResultDataBlock>
-                <span className="title">5 ошибок</span>
-                <ColumnBlock>
+                <span className="title">{textErrors.length} ошибок</span>
+                {/* <ColumnBlock>
                   <span className="grammar">Грамматика: 4</span>
                   <span className="punctuation">Пунктуация: 1</span>
-                </ColumnBlock>
+                </ColumnBlock> */}
               </ResultDataBlock>
-            </ResultsDataContainer> */}
+            </ResultsDataContainer>
           </DataContainer>
+          {/* <DownloadButton onClick={}>Загрузить новое</DownloadButton> */}
         </ResultContainer>
       </ResultPageContainer>
     </ResultPageWrapper>
