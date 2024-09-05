@@ -26,7 +26,6 @@ import Header from '../../components/Header/Header';
 import { ReactComponent as ArrayLeft } from '../../assets/images/array_left.svg';
 import { EventSourceMessage, fetchEventSource } from '@microsoft/fetch-event-source';
 
-console.log(import.meta.env.VITE_BACKEND_URL);
 
 export const ResultPage = () => {
   const [image, setImage] = useState('');
@@ -129,7 +128,7 @@ export const ResultPage = () => {
     if (params?.state?.image) {
       setMessage('Сохранение');
       setImage(params?.state?.image);
-      fetch(`${import.meta.env.VITE_BACKEND_URL}/upload`, {
+      fetch(`/upload`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -140,7 +139,7 @@ export const ResultPage = () => {
         .then((response) => {
           const ctrl = new AbortController();
           const fetchData = async () => {
-            await fetchEventSource(`${import.meta.env.VITE_BACKEND_URL}/stream?name=` + response.message, {
+            await fetchEventSource(`/stream?name=` + response.message, {
               signal: ctrl.signal,
               onmessage(ev) {
                 //console.log(ev); // for debugging purposes
