@@ -222,7 +222,7 @@ export const ResultPage = () => {
               )}
             </TextResult>
 
-            <ResultsDataContainer>
+            {/* <ResultsDataContainer>
               <ResultDataBlock>
                 <span className="title">Точность проверки</span>
                 <ColumnBlock>
@@ -237,7 +237,7 @@ export const ResultPage = () => {
                   <span className="punctuation">Пунктуация: 1</span>
                 </ColumnBlock>
               </ResultDataBlock>
-            </ResultsDataContainer>
+            </ResultsDataContainer> */}
           </DataContainer>
         </ResultContainer>
       </ResultPageContainer>
