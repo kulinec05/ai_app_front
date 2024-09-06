@@ -219,6 +219,7 @@ export const ResultPage = () => {
                 <span className="title">
                   {textErrors.length && (
                     <>
+                      {textErrors.length}
                       {textErrors.length === 1 && 'ошибка'}
                       {textErrors.length > 1 && textErrors.length < 5 && 'ошибки'}
                       {textErrors.length >= 5 && 'ошибок'}
