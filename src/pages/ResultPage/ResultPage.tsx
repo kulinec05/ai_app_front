@@ -32,6 +32,12 @@ import Header from '../../components/Header/Header';
 import { ReactComponent as ArrayLeft } from '../../assets/images/array_left.svg';
 import { EventSourceMessage, fetchEventSource } from '@microsoft/fetch-event-source';
 
+function htmlEncode(str: string) {
+  return String(str).replace(/[^\w. ]/gi, function (c) {
+    return '&#' + c.charCodeAt(0) + ';';
+  });
+}
+
 export const ResultPage = () => {
   const [image, setImage] = useState('');
   const [message, setMessage] = useState('');
@@ -122,7 +128,7 @@ export const ResultPage = () => {
             if (t === error.wordIndex) return true;
           }
         });
-        words[i] = `<span class='error' val='${error.suggestions[0]}'>${words[i]}</span>`;
+        words[i] = `<span class='error' val='${htmlEncode(error.suggestions[0])}'>${words[i]}</span>;`;
       });
       const el = document.getElementById('resultText');
       if (el) el.innerHTML = words.join(' ');
